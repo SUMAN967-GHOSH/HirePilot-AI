@@ -4,7 +4,7 @@ import { groq } from '@/lib/groq';
 
 export async function POST(req: Request) {
   try {
-    const { sessionId } = await req.json();
+    const { sessionId, qaLog: clientQaLog } = await req.json();
 
     if (!sessionId) {
       return NextResponse.json({ error: 'Missing sessionId' }, { status: 400 });
@@ -16,18 +16,22 @@ export async function POST(req: Request) {
       }, { status: 400 });
     }
 
-    const supabase = createAdminClient();
+    let qaLog = clientQaLog;
 
-    // 1. Fetch session data (we just need qa_log now since we do frontend grading)
-    const { data: session, error: fetchError } = await supabase
-      .from('interview_sessions')
-      .select('qa_log')
-      .eq('id', sessionId)
-      .single();
+    if (!qaLog || qaLog.length === 0) {
+      const supabase = createAdminClient();
 
-    if (fetchError) throw fetchError;
+      // 1. Fetch session data (fallback if not provided by client)
+      const { data: session, error: fetchError } = await supabase
+        .from('interview_sessions')
+        .select('qa_log')
+        .eq('id', sessionId)
+        .single();
 
-    const qaLog = session.qa_log || [];
+      if (!fetchError && session) {
+        qaLog = session.qa_log || [];
+      }
+    }
     if (qaLog.length === 0) {
       return NextResponse.json({ error: 'No answers recorded yet' }, { status: 400 });
     }

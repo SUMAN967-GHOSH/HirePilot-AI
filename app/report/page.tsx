@@ -29,10 +29,14 @@ function ReportContent() {
 
     const fetchReport = async () => {
       try {
+        const sessionStr = sessionStorage.getItem('hirepilot_interview');
+        const sessionDataObj = sessionStr ? JSON.parse(sessionStr) : null;
+        const qaLog = sessionDataObj?.qa_log || [];
+
         const res = await fetch('/api/report', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ sessionId })
+          body: JSON.stringify({ sessionId, qaLog })
         });
         
         const data = await res.json();
@@ -98,12 +102,12 @@ function ReportContent() {
             </div>
           </Card>
           
-          <div className="flex gap-4">
-             <Button variant="outline" className="w-full border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white" onClick={() => window.print()}>
-               <Download className="w-4 h-4 mr-2" /> Export
+          <div className="flex flex-col gap-4">
+             <Button variant="outline" className="w-full h-12 border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white" onClick={() => window.print()}>
+               <Download className="w-4 h-4 mr-2" /> Export PDF
              </Button>
-             <Button className="w-full bg-violet-600 hover:bg-violet-700 text-white" onClick={() => router.push('/upload')}>
-               <RotateCcw className="w-4 h-4 mr-2" /> New Session
+             <Button className="w-full h-12 bg-violet-600 hover:bg-violet-700 text-white" onClick={() => router.push('/upload')}>
+               <RotateCcw className="w-4 h-4 mr-2" /> Start New Session
              </Button>
           </div>
         </div>
