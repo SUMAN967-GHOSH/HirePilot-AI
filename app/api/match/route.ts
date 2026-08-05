@@ -123,8 +123,8 @@ export async function POST(req: Request) {
       topMatches,
       assessment: matchAssessment
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error in match route:', error);
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: (error instanceof Error ? error.message : String(error)) || 'Internal Server Error' }, { status: 500 });
   }
 }

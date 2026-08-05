@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     // 2. Compute accuracy
     let correctCount = 0;
     
-    qaLog.forEach((log: any) => {
+    qaLog.forEach((log: Record<string, unknown>) => {
       if (log.isCorrect) correctCount++;
     });
 
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
     Summarize the candidate's performance in exactly 3 sentences based on their MCQ accuracy.
     Focus on their demonstrated knowledge areas and gaps.`;
 
-    const qaLogText = qaLog.map((log: any, idx: number) => `
+    const qaLogText = qaLog.map((log: Record<string, unknown>, idx: number) => `
       Q${idx+1}: ${log.question}
       Candidate Selected: ${log.selectedOptions?.join(', ')}
       Correct Answer: ${log.correctAnswers?.join(', ')}
@@ -86,8 +86,8 @@ export async function POST(req: Request) {
         qaLog: qaLog
       }
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error in report route:', error);
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: (error instanceof Error ? error.message : String(error)) || 'Internal Server Error' }, { status: 500 });
   }
 }

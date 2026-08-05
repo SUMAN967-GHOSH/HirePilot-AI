@@ -1,5 +1,5 @@
 // Singleton pattern — model loads once per Node process
-let pipeline: any = null;
+let pipeline: unknown = null;
 
 export async function getEmbedding(text: string): Promise<number[]> {
   if (!pipeline) {

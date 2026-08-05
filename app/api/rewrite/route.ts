@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
     // 2. Find top 3 most relevant JD chunks
     const matches = jdChunks.map(jdChunk => {
-      let jdVector = typeof jdChunk.embedding === 'string' ? JSON.parse(jdChunk.embedding) : jdChunk.embedding;
+      const jdVector = typeof jdChunk.embedding === 'string' ? JSON.parse(jdChunk.embedding) : jdChunk.embedding;
       return {
         chunk_text: jdChunk.chunk_text,
         similarity: cosineSimilarity(bulletEmbedding, jdVector)
@@ -44,7 +44,7 @@ export async function POST(req: Request) {
 
     // 3. Prompt Groq with the context
     const jdContext = topMatches && topMatches.length > 0 
-      ? topMatches.map((m: any) => m.chunk_text).join('\n')
+      ? topMatches.map((m: unknown) => m.chunk_text).join('\n')
       : 'No specific relevant JD context found.';
 
     const systemPrompt = `You are an expert resume writer. Rewrite the provided resume bullet point to better align with the language and requirements of the target job description. 
@@ -88,8 +88,8 @@ export async function POST(req: Request) {
       rewritten: result.rewritten,
       reasoning: result.reasoning
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error in rewrite route:', error);
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: (error instanceof Error ? error.message : String(error)) || 'Internal Server Error' }, { status: 500 });
   }
 }

@@ -64,8 +64,8 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ success: true, embeddedCount });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error in embed route:', error);
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: (error instanceof Error ? error.message : String(error)) || 'Internal Server Error' }, { status: 500 });
   }
 }

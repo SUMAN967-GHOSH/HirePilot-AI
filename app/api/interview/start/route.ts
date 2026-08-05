@@ -51,8 +51,8 @@ export async function POST(req: Request) {
       sessionId: sessionData.id,
       questions
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error in interview start route:', error);
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: (error instanceof Error ? error.message : String(error)) || 'Internal Server Error' }, { status: 500 });
   }
 }
