@@ -75,7 +75,7 @@ export function JDInputPanel({
               className="bg-slate-950 border-slate-800 text-slate-200"
             />
             <p className="text-xs text-slate-500">
-              We'll automatically extract the job details from the provided URL.
+              We&apos;ll automatically extract the job details from the provided URL.
             </p>
           </div>
         </TabsContent>

@@ -47,10 +47,10 @@ export async function POST(req: Request) {
       let bestMatch = null;
       let highestSim = -1;
 
-      let jdVector = typeof jdChunk.embedding === 'string' ? JSON.parse(jdChunk.embedding) : jdChunk.embedding;
+      const jdVector = typeof jdChunk.embedding === 'string' ? JSON.parse(jdChunk.embedding) : jdChunk.embedding;
 
       for (const resumeChunk of resumeChunks) {
-        let resumeVector = typeof resumeChunk.embedding === 'string' ? JSON.parse(resumeChunk.embedding) : resumeChunk.embedding;
+        const resumeVector = typeof resumeChunk.embedding === 'string' ? JSON.parse(resumeChunk.embedding) : resumeChunk.embedding;
         const sim = cosineSimilarity(jdVector, resumeVector);
         if (sim > highestSim) {
           highestSim = sim;

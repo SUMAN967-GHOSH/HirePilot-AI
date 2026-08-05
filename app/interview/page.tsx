@@ -13,7 +13,7 @@ export default function InterviewPage() {
   const [sessionData, setSessionData] = useState<Record<string, unknown> | null>(null);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
-  const [lastScore, setLastScore] = useState<any>(null);
+  const [lastScore, setLastScore] = useState<unknown>(null);
   
   useEffect(() => {
     const data = sessionStorage.getItem('hirepilot_interview');
