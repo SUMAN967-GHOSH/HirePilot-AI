@@ -12,6 +12,7 @@
 [![Supabase](https://img.shields.io/badge/Database-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 
 **🔗 Live Deployment:** [https://hirepilot-ai-latest.vercel.app/](https://hirepilot-ai-latest.vercel.app)
+**📊 Pitch Deck / Presentation:** [View Google Slides](https://docs.google.com/presentation/d/1mkSQ7MEmzu_f6xMZrEpaIH29l_BGVHjyL4G-PN2LFKs/edit?usp=sharing)
 
 ---
 
