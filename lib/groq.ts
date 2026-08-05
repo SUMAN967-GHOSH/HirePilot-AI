@@ -42,7 +42,7 @@ export const tools = [
     type: "function" as const,
     function: {
       name: "generateInterviewQuestions",
-      description: "Generate targeted interview questions based on identified gaps between resume and job description",
+      description: "Generate 5 targeted multiple-choice interview questions based on identified gaps between resume and job description. Include aptitude and tech stack questions. Multiple options can be correct.",
       parameters: {
         type: "object",
         properties: {
@@ -54,8 +54,18 @@ export const tools = [
                 id: { type: "string" },
                 question: { type: "string" },
                 targetedGap: { type: "string" },
-                difficulty: { type: "string", enum: ["easy", "medium", "hard"] }
-              }
+                options: { 
+                  type: "array",
+                  items: { type: "string" }
+                },
+                correctAnswers: {
+                  type: "array",
+                  items: { type: "string" },
+                  description: "The options that are correct. Must match the exact string from the options array."
+                },
+                explanation: { type: "string", description: "Why these answers are correct." }
+              },
+              required: ["id", "question", "targetedGap", "options", "correctAnswers", "explanation"]
             }
           }
         },
