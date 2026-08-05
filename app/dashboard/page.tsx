@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge';
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<Record<string, unknown> | null>(null);
   const [isStarting, setIsStarting] = useState(false);
 
   useEffect(() => {
@@ -19,6 +19,7 @@ export default function DashboardPage() {
       router.push('/upload');
       return;
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setData(JSON.parse(sessionStr));
   }, [router]);
 
@@ -48,8 +49,8 @@ export default function DashboardPage() {
       }));
 
       router.push('/interview');
-    } catch (err: any) {
-      alert('Error starting interview: ' + err.message);
+    } catch (err: unknown) {
+      alert('Error starting interview: ' + (err instanceof Error ? err.message : String(err)));
       setIsStarting(false);
     }
   };
@@ -141,7 +142,7 @@ export default function DashboardPage() {
           <div className="mt-8 pt-8 border-t border-slate-800">
              <h4 className="text-sm font-medium text-slate-400 mb-3 uppercase tracking-wider">Top Resume Strengths</h4>
              <ul className="space-y-4">
-               {data.matchData.topMatches.map((match: any, idx: number) => (
+               {data.matchData.topMatches.map((match: Record<string, unknown>, idx: number) => (
                  <li key={idx} className="text-sm bg-slate-950 p-3 rounded-md border border-slate-800">
                     <p className="text-slate-400 mb-1"><span className="text-violet-400 font-medium">JD wants:</span> {match.jdChunk}</p>
                     <p className="text-slate-200"><span className="text-emerald-400 font-medium">You have:</span> {match.resumeChunk}</p>

@@ -81,8 +81,8 @@ export default function UploadPage() {
       }));
 
       router.push('/dashboard');
-    } catch (err: any) {
-      alert('Error during processing: ' + err.message);
+    } catch (err: unknown) {
+      alert('Error during processing: ' + (err instanceof Error ? err.message : String(err)));
       setIsProcessing(false);
     }
   };

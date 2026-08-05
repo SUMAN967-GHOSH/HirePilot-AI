@@ -13,7 +13,7 @@ function ReportContent() {
   const router = useRouter();
   const sessionId = searchParams.get('session');
   
-  const [report, setReport] = useState<any>(null);
+  const [report, setReport] = useState<Record<string, unknown> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -43,8 +43,8 @@ function ReportContent() {
         if (!data.success) throw new Error(data.error);
         
         setReport(data.report);
-      } catch (err: any) {
-        alert('Error loading report: ' + err.message);
+      } catch (err: unknown) {
+        alert('Error loading report: ' + (err instanceof Error ? err.message : String(err)));
       } finally {
         setIsLoading(false);
       }
@@ -126,7 +126,7 @@ function ReportContent() {
           <Card className="bg-slate-900/50 backdrop-blur border-slate-800 p-6">
             <h3 className="text-xl font-bold text-slate-200 mb-6">Detailed Q&A Log</h3>
             <div className="space-y-8">
-              {report.qaLog?.map((log: any, idx: number) => (
+              {report.qaLog?.map((log: Record<string, unknown>, idx: number) => (
                 <div key={idx} className="border-b border-slate-800 pb-6 last:border-0 last:pb-0">
                   <div className="flex items-start justify-between mb-3">
                     <p className="font-medium text-slate-200 pr-8">

@@ -10,7 +10,7 @@ import { Loader2, CheckCircle2, ArrowRight, Target, XCircle } from 'lucide-react
 
 export default function InterviewPage() {
   const router = useRouter();
-  const [sessionData, setSessionData] = useState<any>(null);
+  const [sessionData, setSessionData] = useState<Record<string, unknown> | null>(null);
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [lastScore, setLastScore] = useState<any>(null);
@@ -22,6 +22,7 @@ export default function InterviewPage() {
       return;
     }
     const parsed = JSON.parse(data);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSessionData(parsed);
     setCurrentQIndex(parsed.currentQ || 0);
   }, [router]);
