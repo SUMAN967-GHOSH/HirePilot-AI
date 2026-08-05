@@ -11,9 +11,9 @@
 [![RAG Architecture](https://img.shields.io/badge/Architecture-RAG-8A2BE2?style=for-the-badge)](#)
 [![Supabase](https://img.shields.io/badge/Database-Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 
-**🔗 Live Deployment:** [https://hirepilot-ai-latest.vercel.app/](https://hirepilot-ai-latest.vercel.app)
-**📊 Pitch Deck:** [View Google Slides](https://docs.google.com/presentation/d/1mkSQ7MEmzu_f6xMZrEpaIH29l_BGVHjyL4G-PN2LFKs/edit?usp=sharing)
-**🎥 Demo Video:** [Watch on Google Drive](https://drive.google.com/file/d/1xutHCnuHw3mGEUEIr9edq3fxwVncnyKW/view?usp=sharing)
+- **🔗 Live Deployment:** [https://hirepilot-ai-latest.vercel.app/](https://hirepilot-ai-latest.vercel.app)
+- **📊 Pitch Deck:** [View Google Slides](https://docs.google.com/presentation/d/1mkSQ7MEmzu_f6xMZrEpaIH29l_BGVHjyL4G-PN2LFKs/edit?usp=sharing)
+- **🎥 Demo Video:** [Watch on Google Drive](https://drive.google.com/file/d/1xutHCnuHw3mGEUEIr9edq3fxwVncnyKW/view?usp=sharing)
 
 ---
 
