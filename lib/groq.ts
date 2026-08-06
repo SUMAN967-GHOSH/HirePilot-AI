@@ -1,7 +1,8 @@
 import Groq from "groq-sdk";
 
+// Use a dummy key during build time if environment variable is not set
 export const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
+  apiKey: process.env.GROQ_API_KEY || "dummy_build_key",
 });
 
 export const tools = [
