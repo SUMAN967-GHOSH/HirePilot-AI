@@ -105,23 +105,23 @@ export default function InterviewPage() {
       </div>
 
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-slate-200">Mock Interview</h2>
-        <Badge variant="outline" className="text-slate-400 border-slate-700">
+        <h2 className="text-2xl font-bold text-card-foreground">Mock Interview</h2>
+        <Badge variant="outline" className="text-muted-foreground border-border">
           Question {currentQIndex + 1} of {sessionData.questions.length}
         </Badge>
       </div>
 
       <div className="grid gap-6">
         {/* Question Card */}
-        <Card className="bg-slate-900/80 backdrop-blur border-slate-800 p-6 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-1 h-full bg-violet-500"></div>
+        <Card className="bg-card/80 backdrop-blur border-border p-6 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-1 h-full bg-primary"></div>
           
           <div className="flex items-start mb-4">
-            <div className="w-10 h-10 rounded-full bg-violet-500/20 flex items-center justify-center text-violet-400 mr-4 shrink-0">
+            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary mr-4 shrink-0">
               🤖
             </div>
             <div>
-              <p className="text-lg text-slate-200 leading-relaxed font-medium">
+              <p className="text-lg text-card-foreground leading-relaxed font-medium">
                 {currentQ.question}
               </p>
             </div>
@@ -130,8 +130,8 @@ export default function InterviewPage() {
           <div className="ml-14 flex items-center space-x-2 mt-4">
             <Target className="w-4 h-4 text-emerald-400" />
             <span className="text-sm text-emerald-400 font-medium">Targeted Area:</span>
-            <span className="text-sm text-slate-400">{currentQ.targetedGap}</span>
-            <Badge variant="secondary" className="ml-4 bg-slate-800 text-slate-300">
+            <span className="text-sm text-muted-foreground">{currentQ.targetedGap}</span>
+            <Badge variant="secondary" className="ml-4 bg-muted text-muted-foreground">
               Multiple answers possible
             </Badge>
           </div>
@@ -139,8 +139,8 @@ export default function InterviewPage() {
 
         {/* Options */}
         {!lastScore ? (
-          <Card className="bg-slate-950/50 border-slate-800 p-6">
-            <h3 className="text-sm font-medium text-slate-400 mb-4 uppercase tracking-wider">Select all that apply</h3>
+          <Card className="bg-background/50 border-border p-6">
+            <h3 className="text-sm font-medium text-muted-foreground mb-4 uppercase tracking-wider">Select all that apply</h3>
             
             <div className="space-y-3 mb-6">
               {(currentQ.options || []).map((opt: string, idx: number) => {
@@ -149,13 +149,13 @@ export default function InterviewPage() {
                   <div 
                     key={idx}
                     onClick={() => toggleOption(opt)}
-                    className={`p-4 rounded-lg border cursor-pointer transition-all ${isSelected ? 'border-violet-500 bg-violet-500/10' : 'border-slate-800 bg-slate-900 hover:border-slate-600'}`}
+                    className={`p-4 rounded-lg border cursor-pointer transition-all ${isSelected ? 'border-primary bg-primary/10' : 'border-border bg-card hover:border-primary/50'}`}
                   >
                     <div className="flex items-center">
-                      <div className={`w-5 h-5 rounded flex items-center justify-center mr-3 border ${isSelected ? 'bg-violet-600 border-violet-500 text-white' : 'border-slate-600'}`}>
+                      <div className={`w-5 h-5 rounded flex items-center justify-center mr-3 border ${isSelected ? 'bg-primary border-primary text-primary-foreground' : 'border-muted'}`}>
                         {isSelected && <CheckCircle2 className="w-4 h-4" />}
                       </div>
-                      <span className="text-slate-300">{opt}</span>
+                      <span className="text-foreground">{opt}</span>
                     </div>
                   </div>
                 );
@@ -173,10 +173,10 @@ export default function InterviewPage() {
             </div>
           </Card>
         ) : (
-          <Card className={`border p-6 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4 ${lastScore.isCorrect ? 'bg-slate-900 border-emerald-500/30' : 'bg-slate-900 border-rose-500/30'}`}>
+          <Card className={`border p-6 relative overflow-hidden animate-in fade-in slide-in-from-bottom-4 ${lastScore.isCorrect ? 'bg-card border-emerald-500/30' : 'bg-card border-rose-500/30'}`}>
             <div className={`absolute top-0 left-0 w-full h-1 ${lastScore.isCorrect ? 'bg-emerald-500' : 'bg-rose-500'}`}></div>
             
-            <h3 className="text-lg font-bold text-slate-200 mb-4 flex items-center">
+            <h3 className="text-lg font-bold text-card-foreground mb-4 flex items-center">
               {lastScore.isCorrect ? (
                 <><CheckCircle2 className="w-5 h-5 text-emerald-400 mr-2" /> Correct!</>
               ) : (
@@ -186,19 +186,19 @@ export default function InterviewPage() {
             
             {!lastScore.isCorrect && (
               <div className="mb-4">
-                <span className="text-sm text-slate-400 block mb-1">Correct Answers:</span>
+                <span className="text-sm text-muted-foreground block mb-1">Correct Answers:</span>
                 <ul className="list-disc pl-5 text-emerald-400 text-sm">
                   {lastScore.correctAnswers.map((ans: string, i: number) => <li key={i}>{ans}</li>)}
                 </ul>
               </div>
             )}
             
-            <div className="bg-violet-950/30 border border-violet-500/20 rounded-lg p-4 mb-6">
-              <p className="text-slate-300"><strong>Explanation:</strong> {lastScore.explanation}</p>
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-6">
+              <p className="text-muted-foreground"><strong>Explanation:</strong> {lastScore.explanation}</p>
             </div>
             
             <div className="flex justify-end">
-              <Button onClick={handleNext} className="bg-violet-600 hover:bg-violet-700 text-white">
+              <Button onClick={handleNext} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 {currentQIndex + 1 >= sessionData.questions.length ? 'Finish & View Report' : 'Next Question'}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
