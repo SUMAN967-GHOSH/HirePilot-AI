@@ -1,6 +1,7 @@
 {
-  "name": "hirepilot",
+  "name": "hirepilot-ai",
   "version": "0.1.0",
+  "description": "AI-powered RAG & Agentic Resume-to-Interview Pipeline",
   "private": true,
   "scripts": {
     "dev": "next dev",
