@@ -10,16 +10,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Career Copilot",
-  description: "RAG + Agentic Resume-to-Interview Pipeline",
+  title: "HirePilot AI - Career Copilot",
+  description: "AI-powered RAG & Agentic Resume-to-Interview Pipeline. Supercharge your job search.",
 };
 
 import { Header } from "@/components/shared/Header";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`dark ${inter.variable} antialiased`}>
-      <body className="min-h-screen bg-slate-900 text-slate-50 flex flex-col font-sans">
+    <html lang="en" className={`dark ${inter.variable} antialiased`} suppressHydrationWarning>
+      <body className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary/20">
         <Header />
         <TooltipProvider>{children}</TooltipProvider>
         <Toaster theme="dark" />
