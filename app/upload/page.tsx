@@ -105,7 +105,7 @@ export default function UploadPage() {
 
       <div className="flex flex-col items-center justify-center">
         {isProcessing && (
-          <div className="flex items-center space-x-3 mb-4 text-violet-400">
+          <div className="flex items-center space-x-3 mb-4 text-primary">
             <Loader2 className="w-5 h-5 animate-spin" />
             <span className="font-medium">{progressText}</span>
           </div>
@@ -114,7 +114,7 @@ export default function UploadPage() {
           onClick={handleAnalyze} 
           disabled={isProcessing || !file || (!jdText && !jdUrl)}
           size="lg"
-          className="bg-violet-600 hover:bg-violet-700 text-white min-w-[240px] h-12 text-lg shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-all hover:shadow-[0_0_30px_rgba(124,58,237,0.5)] disabled:opacity-50 disabled:shadow-none"
+          className="bg-primary hover:bg-primary/90 text-primary-foreground min-w-[240px] h-12 text-lg shadow-[0_0_20px_rgba(var(--primary),0.3)] transition-all hover:shadow-[0_0_30px_rgba(var(--primary),0.5)] disabled:opacity-50 disabled:shadow-none"
         >
           {isProcessing ? 'Processing...' : 'Analyze Match'}
           {!isProcessing && <ArrowRight className="w-5 h-5 ml-2" />}
