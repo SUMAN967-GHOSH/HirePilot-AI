@@ -68,13 +68,13 @@ export default function DashboardPage() {
 
       <div className="grid md:grid-cols-[1fr_2fr] gap-8 mb-8">
         {/* Match Score Card */}
-        <Card className="bg-slate-900/50 backdrop-blur border-slate-800 p-6 flex flex-col items-center text-center">
-          <h3 className="text-xl font-medium mb-6 text-slate-200">Match Score</h3>
+        <Card className="bg-card/50 backdrop-blur border-border p-6 flex flex-col items-center text-center hover:border-primary/50 transition-colors">
+          <h3 className="text-xl font-medium mb-6 text-card-foreground">Match Score</h3>
           
           <div className="relative w-48 h-48 mb-6 flex items-center justify-center">
             {/* Animated ring */}
             <svg className="w-full h-full transform -rotate-90">
-              <circle cx="96" cy="96" r="88" className="stroke-slate-800" strokeWidth="16" fill="none" />
+              <circle cx="96" cy="96" r="88" className="stroke-muted" strokeWidth="16" fill="none" />
               <circle 
                 cx="96" cy="96" r="88" 
                 className={`${matchScore > 75 ? 'stroke-emerald-500' : matchScore > 50 ? 'stroke-amber-500' : 'stroke-rose-500'} transition-all duration-1000 ease-out`}
@@ -85,21 +85,21 @@ export default function DashboardPage() {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-5xl font-bold text-white">{matchScore}%</span>
-              <span className="text-sm text-slate-400 mt-1">
+              <span className="text-5xl font-bold text-foreground">{matchScore}%</span>
+              <span className="text-sm text-muted-foreground mt-1">
                 {matchScore > 75 ? 'Strong Match' : matchScore > 50 ? 'Fair Match' : 'Weak Match'}
               </span>
             </div>
           </div>
 
-          <p className="text-slate-300 text-sm mb-8 text-left bg-slate-950 p-4 rounded-lg border border-slate-800">
+          <p className="text-muted-foreground text-sm mb-8 text-left bg-background p-4 rounded-lg border border-border">
             {assessment.explanation || 'No explanation provided.'}
           </p>
 
           <Button 
             onClick={handleStartInterview} 
             disabled={isStarting}
-            className="w-full bg-violet-600 hover:bg-violet-700 text-white"
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all"
           >
             {isStarting ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
             {isStarting ? 'Starting...' : 'Start Mock Interview'}
@@ -108,11 +108,11 @@ export default function DashboardPage() {
         </Card>
 
         {/* Skill Analysis */}
-        <Card className="bg-slate-900/50 backdrop-blur border-slate-800 p-6">
-          <h3 className="text-xl font-medium mb-6 text-slate-200">Skill Analysis</h3>
+        <Card className="bg-card/50 backdrop-blur border-border p-6 hover:border-primary/50 transition-colors">
+          <h3 className="text-xl font-medium mb-6 text-card-foreground">Skill Analysis</h3>
           
           <div className="mb-8">
-            <h4 className="text-sm font-medium text-slate-400 mb-3 uppercase tracking-wider flex items-center">
+            <h4 className="text-sm font-medium text-muted-foreground mb-3 uppercase tracking-wider flex items-center">
               <CheckCircle2 className="w-4 h-4 mr-2 text-emerald-500" /> 
               Matched Skills
             </h4>
@@ -121,12 +121,12 @@ export default function DashboardPage() {
                 <Badge key={i} className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 hover:bg-emerald-500/20 px-3 py-1 text-sm">
                   {skill}
                 </Badge>
-              )) : <span className="text-slate-500 text-sm">No matched skills identified.</span>}
+              )) : <span className="text-muted-foreground/50 text-sm">No matched skills identified.</span>}
             </div>
           </div>
 
           <div>
-            <h4 className="text-sm font-medium text-slate-400 mb-3 uppercase tracking-wider flex items-center">
+            <h4 className="text-sm font-medium text-muted-foreground mb-3 uppercase tracking-wider flex items-center">
               <XCircle className="w-4 h-4 mr-2 text-rose-500" /> 
               Missing Skills (Gaps)
             </h4>
@@ -135,17 +135,17 @@ export default function DashboardPage() {
                 <Badge key={i} variant="outline" className="bg-rose-500/10 text-rose-400 border-rose-500/20 hover:bg-rose-500/20 px-3 py-1 text-sm">
                   {skill}
                 </Badge>
-              )) : <span className="text-slate-500 text-sm">No significant gaps identified.</span>}
+              )) : <span className="text-muted-foreground/50 text-sm">No significant gaps identified.</span>}
             </div>
           </div>
           
-          <div className="mt-8 pt-8 border-t border-slate-800">
-             <h4 className="text-sm font-medium text-slate-400 mb-3 uppercase tracking-wider">Top Resume Strengths</h4>
+          <div className="mt-8 pt-8 border-t border-border">
+             <h4 className="text-sm font-medium text-muted-foreground mb-3 uppercase tracking-wider">Top Resume Strengths</h4>
              <ul className="space-y-4">
                {data.matchData.topMatches.map((match: Record<string, unknown>, idx: number) => (
-                 <li key={idx} className="text-sm bg-slate-950 p-3 rounded-md border border-slate-800">
-                    <p className="text-slate-400 mb-1"><span className="text-violet-400 font-medium">JD wants:</span> {match.jdChunk}</p>
-                    <p className="text-slate-200"><span className="text-emerald-400 font-medium">You have:</span> {match.resumeChunk}</p>
+                 <li key={idx} className="text-sm bg-background p-3 rounded-md border border-border">
+                    <p className="text-muted-foreground mb-1"><span className="text-primary font-medium">JD wants:</span> {match.jdChunk}</p>
+                    <p className="text-card-foreground"><span className="text-emerald-400 font-medium">You have:</span> {match.resumeChunk}</p>
                  </li>
                ))}
              </ul>
