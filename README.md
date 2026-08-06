@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="public/logo.png" alt="Career Copilot Logo" width="120" />
+  <img src="public/logo.png" alt="HirePilot AI Logo" width="120" />
 </div>
 
-# 🚀 Career Copilot
+# 🚀 HirePilot AI
 > **Your Agentic AI Recruiter for Precision Interview Prep.**
 
 [![Llama 3.3 70B](https://img.shields.io/badge/Model-Llama_3.3_70B-0466c8?style=for-the-badge&logo=meta&logoColor=white)](#)
